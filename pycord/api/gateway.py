@@ -184,6 +184,7 @@ class ShardConnection:
                     if sniffio.current_async_library() == "curio":
                         import curio.meta
                         async with curio.meta.finalize(self.ws):
+                            curio.meta.safe_generator(self.ws.__aiter__)
                             await self.read_data(nursery)
                     else:
                         await self.read_data(nursery)

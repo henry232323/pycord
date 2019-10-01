@@ -1,3 +1,5 @@
+import curio
+
 import pycord
 import trio
 
@@ -6,7 +8,7 @@ Example showing off how beautiful
 the design of this api wrapper is ;)
 """
 
-client = pycord.Client('trio')
+client = pycord.Client('curio')
 
 
 @client.on('ready')
@@ -23,4 +25,4 @@ async def ping_command(message):
         await message.reply('Pong!')
 
 
-trio.run(client.login, 'token')
+curio.run(client.login, 'token')
